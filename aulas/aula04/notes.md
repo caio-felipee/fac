@@ -39,7 +39,7 @@ g = h + a[8]
 # reg: end. base
 lw $t0 32($s2)
 add $s0 $s1 $t0
-sw %s0 48(%s2)
+sw $s0 48($s2)
 ```
 
 
