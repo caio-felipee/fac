@@ -1,7 +1,7 @@
 ## Instruções de acesso à memória
 
 - A memória é um "vetor" com células de 1 byte
-- `ld reg1, const (reg2)` - minemónio de leitura
+- `lw reg1, const (reg2)` - minemónio de leitura
     - load word
     - lê o conteúdo da memória do endereço *reg2 + const*
 
