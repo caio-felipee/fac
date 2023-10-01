@@ -12,7 +12,7 @@
     | ---------- | ------- | ------------------- |
     | $t0 a $t7  | 8-15    | 8 regs. temporários |
     | $s0 a $s7  | 16-23   | 8 regs. salvos      |
-    | $st8 e $t9 | 24 e 25 | 2 regs. temporários |
+    | $t8 e $t9 | 24 e 25 | 2 regs. temporários |
     | Restante   |  `---`  | Uso reservado       |
 
 ### Operações aritméticas
