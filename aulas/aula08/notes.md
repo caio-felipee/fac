@@ -107,6 +107,10 @@ main:
     la $a0, nl
     syscall
 
+    # Finaliza a execução
+    li $v0, 10
+    syscall
+
 media:
     add $t0, $a0, $a1 # t0 = a + b
     srl $v0, $t0, 1 # v0 = t0 / 2
