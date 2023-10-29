@@ -84,7 +84,7 @@ b = $s1
 
 .text
 main:
-    li $s0, 3
+    li $s0, 1
     li $s1, 2
 
     # Carrega args.
