@@ -84,7 +84,7 @@ b = $s1
 
 .text
 main:
-    li $s0, 3
+    li $s0, 1
     li $s1, 2
 
     # Carrega args.
@@ -105,6 +105,10 @@ main:
     # Imprime nova linha
     li $v0, 4
     la $a0, nl
+    syscall
+
+    # Finaliza a execução
+    li $v0, 10
     syscall
 
 media:
