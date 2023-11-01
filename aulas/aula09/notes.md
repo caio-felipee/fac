@@ -58,6 +58,6 @@ A negação de `$t2`: <br>
 main:
     addu $t0, $t1, $t2
     nor $t3, $t2, $zero # t3 = 2^32 - $t2 - 1
-    slt $t3, %t3, $t1 # 2^32 - t2 - 1 < t1?
+    sltu $t3, $t3, $t1 # 2^32 - t2 - 1 < t1?
     bne $t3, $zero, overflow
 ```
