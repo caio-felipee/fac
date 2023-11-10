@@ -22,7 +22,8 @@ Caso perceba algum erro, sinta-se livre para abrir uma *issue* ou um *pull reque
 
 3. Modulo III
     - [Aula 11](aulas/aula11/notes.md) - Divisão de inteiros
-    
+    - [Aula 12](aulas/aula12/notes.md) - Ponto flutuante
+     
 ## Links adicionais
 - [FAC 2023.2](https://bobfacul.notion.site/FAC-2023-2-353cfca0cb2f46ffb582119ece234fa4)
 - [Resumo para P2](https://lyrical-bush-3b9.notion.site/Resumo-para-P2-FAC-7d0fc88f5f384bada5023d01e84c12f5)
