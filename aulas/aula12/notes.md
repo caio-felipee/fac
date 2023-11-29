@@ -41,7 +41,7 @@ O padrão de representação de números reais adotado mais amplamente é o padr
 
 **Total:** 32 bits <br>
 **Expoente:** é um número com sinal no padrão **excesso** (não é complemento de dois!) <br>
-**Fração (ou manitssa):** é o que vem à direita do ponto binário (já que à esquerda é sempre 1) <br>
+**Fração (ou mantissa):** é o que vem à direita do ponto binário (já que à esquerda é sempre 1) <br>
 A representação dos bits são dadas, em ordem, da esquerda para a direita.
 
 #### Representação do expoente
@@ -52,7 +52,7 @@ A representação dos bits são dadas, em ordem, da esquerda para a direita.
 | ----- | -------- | -------- |
 | 0     | 1111 1100| 01100000000000000000000 |
 
-- y =  `1,1 x 2^3` => `1,1 x 2^1` <br>
+- y =  `1,1 x 2^3` => `2^-1 x 2^4` <br>
 
 | Sinal | Expoente | Mantissa |
 | ----- | -------- | -------- |
@@ -63,7 +63,7 @@ A representação dos bits são dadas, em ordem, da esquerda para a direita.
 
 #### Sinal por excesso
 
-- Por conta que o professor realizou a explicação através de desenho no quadro, deixarei este espaço em branco para mostrar que o conteúdo foi ministrado e que deve ser estudado. Em breve, terá uma explicação aqui.
+- Por que o professor realizou a explicação através de desenho no quadro, deixarei este espaço em branco para mostrar que o conteúdo foi ministrado e que deve ser estudado. Em breve, terá uma explicação aqui.
 
 #### Capacidade de representação
 
@@ -92,6 +92,7 @@ A representação dos bits são dadas, em ordem, da esquerda para a direita.
 | 0 | ≠ 0 | ± número desnormalizado |
 | 1...254 | qualquer | ± número normalizado |
 | 1...2046 | qualquer | ± número normalizado |
+| 255/2047 | 0 | ± infinito |
 | 255/2047 | ≠ 0 | Not a Number (NaN)|
 
 - `NaN:` resultado de operações inválidas, como 0/0 ou ∞ - ∞
