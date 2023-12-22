@@ -1,0 +1,54 @@
+.data
+nl: .asciiz "\n"
+double100: .double 100.0
+
+.text
+main:
+    # Primeiro lemos o valor de N (double)
+    li $v0, 7
+    syscall
+
+    # Guardamos o valor de N em $f2
+    mov.d $f2, $f0
+
+    # Lemos o valor da porcentagem de lucro (double)
+    li $v0, 7
+    syscall
+
+    # Guardamos o valor da porcentagem de lucro em $f4
+    mov.d $f4, $f0
+
+    # Lemos o valor da porcentagem de imposto (double)
+    li $v0, 7
+    syscall
+
+    # Guardamos o valor da porcentagem de imposto em $f6
+    mov.d $f6, $f0
+
+    # Iniciamos o valor inicial da resposta (double) com valor inicial N
+    mov.d $f8, $f2
+
+    # Dividimos o valor da porcentagem de lucro e imposto por 100
+    l.d $f10, double100
+    div.d $f4, $f4, $f10
+    div.d $f6, $f6, $f10
+
+    # Calculamos o valor final da resposta
+    mul.d $f4, $f2, $f4
+    mul.d $f6, $f2, $f6
+    add.d $f8, $f8, $f4
+    add.d $f8, $f8, $f6
+
+    # Imprimimos o valor final da resposta
+    li $v0, 3
+    mov.d $f12, $f8
+    syscall
+
+    # Imprimimos uma quebra de linha
+    li $v0, 4
+    la $a0, nl
+    syscall
+
+    # Terminamos o programa
+    li $v0, 10
+    syscall

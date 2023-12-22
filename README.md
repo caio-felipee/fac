@@ -23,6 +23,11 @@ Caso perceba algum erro, sinta-se livre para abrir uma *issue* ou um *pull reque
 3. Modulo III
     - [Aula 11](aulas/aula11/notes.md) - Divisão de inteiros
     - [Aula 12](aulas/aula12/notes.md) - Ponto flutuante
+    - [Aula 13](aulas/aula13/notes.md) - Adição e multiplicação em ponto flutuante
+    - [Aula 14](aulas/aula14/notes.md) - Implementação de um processador MIPS
+        - A partir deste tópico, até a aula 17, é importante que você veja os [slides da aula]() 
+    - [Aula 15](aulas/aula15/notes.md) - Controle da ULA
+    - [Aula 18](aulas/aula18/notes.md) - Hierarquia de memória
      
 ## Links adicionais
 - [FAC 2023.2](https://bobfacul.notion.site/FAC-2023-2-353cfca0cb2f46ffb582119ece234fa4)

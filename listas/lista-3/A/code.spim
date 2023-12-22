@@ -1,0 +1,66 @@
+.data
+    nl: .asciiz "\n"
+    over: .asciiz "overflow\n"
+.text
+main:
+    # Ler o valor de N em $t0
+    li $v0, 5
+    syscall
+
+    move $t0, $v0
+
+    # Ler o valor de A e B em $s0 e $s1
+    li $v0, 5
+    syscall
+
+    move $s0, $v0
+
+    li $v0, 5
+    syscall
+
+    move $s1, $v0
+
+    beqz $t0, no_signal
+    j signal
+
+    no_signal:
+        addu $s2, $s0, $s1
+        nor $t1, $s1, $zero
+        sltu $t1, $t1, $s0
+
+        bne $t1, $zero, overflow
+        j result
+    
+    signal:
+        addu $s2, $s0, $s1
+        xor $t1, $s0, $s1
+        slt $t1, $t1, $zero
+        bne $t1, $zero, result
+
+        xor $t1, $s2, $s0
+        slt $t1, $t1, $zero
+        bne $t1, $zero, overflow
+
+        j result
+    
+    overflow:
+        li $v0, 4
+        la $a0, over
+        syscall
+
+        j end
+    
+    result:
+        move $a0, $s2
+        li $v0, 1
+        syscall
+
+        la $a0, nl
+        li $v0, 4
+        syscall
+
+        j end
+    
+    end:
+        li $v0, 10
+        syscall

@@ -1,0 +1,67 @@
+.data
+float0: .float 0.0
+nl: .asciiz "\n"
+
+.text
+main:
+    # O objetivo é fazer uma média ponderada (usando float).
+    # Primeiro, lemos o valor de N ($t0) - o número de elementos.
+
+    li $v0, 5
+    syscall
+
+    move $t0, $v0
+
+    # Agora, faremos um loop para ler os valores de cada elemento.
+    # Para cada elemento, precisamos ler o valor e o peso.
+
+    # Iniciamos o numerador ($f1) com 0.
+    l.s $f1, float0
+
+    # Iniciamos o denominador ($f2) com 0.
+    l.s $f2, float0
+
+    # Inicializamos o contador do loop ($t1) com 0.
+    li $t1, 0
+
+    j loop
+loop:
+    beq $t1, $t0, endloop
+
+    # Lemos o peso do elemento ($f3).
+    li $v0, 6
+    syscall
+
+    mov.s $f3, $f0
+
+    # Lemos o valor do elemento ($f4).
+    li $v0, 6
+    syscall
+
+    mov.s $f4, $f0
+
+    # Atualizamos o numerador ($f1) e o denominador ($f2).
+    mul.s $f5, $f3, $f4
+    add.s $f1, $f1, $f5
+    add.s $f2, $f2, $f3
+
+    # Atualizamos o contador do loop ($t1).
+    addi $t1, $t1, 1
+
+    j loop
+
+endloop:
+    # Calculamos a média ponderada ($f12).
+    div.s $f12, $f1, $f2
+
+    # Imprimimos a média ponderada.
+    li $v0, 2
+    syscall
+
+    li $v0, 4
+    la $a0, nl
+    syscall
+
+    # Terminamos o programa.
+    li $v0, 10
+    syscall

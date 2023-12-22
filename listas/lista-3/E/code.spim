@@ -1,0 +1,151 @@
+.data
+invalid_input1: .asciiz "Entradas invalidas.\n"
+not_possible1: .asciiz "Nao foi possivel calcular sqrt("
+not_possible2: .asciiz ").\n"
+result1: .asciiz "A raiz quadrada de "
+result2: .asciiz " eh "
+result3: .asciiz ", calculada em "
+result4: .asciiz " iteracoes.\n"
+nl: .asciiz "\n"
+st: .double 0.0
+div10: .double 10.0
+div2: .double 2.0
+div1: .double 1.0
+
+.text
+main:
+    # Lê o valor de x em $t0
+    li $v0, 5
+    syscall
+
+    move $t0, $v0
+
+    # Lê o valor de epsilon em $t1
+    li $v0, 5  
+    syscall
+
+    move $t1, $v0
+
+    # Verifica se o valor de x é <= 1
+    li $t2, 1
+    ble $t0, $t2, invalid_input
+
+    # Verifica se o valor de epsilon é <= 0 ou > 16
+    addi $t2, $t1, -16
+    blez $t1, invalid_input
+    bgtz $t2, invalid_input
+
+    # Calcula qual é o melhor número para o a0 ($t2)
+    li $t2, 1
+    j best_match
+
+best_match:
+    addi $t2, 1
+    mul $t3, $t2, $t2
+    blt $t3, $t0, best_match
+
+    addi $t2, -1
+
+    # Transformamos o valor de x em double em $f0
+    mtc1.d $t0, $f0
+    cvt.d.w $f0, $f0
+
+    # Transformamos o valor de epsilon em double em $f2
+    l.d $f2, div1
+
+    # Transformamos o valor de a0 em double em $f4
+    mtc1.d $t2, $f4
+    cvt.d.w $f4, $f4
+
+    # Transformamos o valor de 10 em double em $f6
+    l.d $f6, div10
+
+    # Transformamos o valor de 2 em double em $f8
+    l.d $f10, div2
+
+    # Calculamos o valor real de epsilon
+    j real_epsilon
+
+real_epsilon:
+    beqz $t1, calculate
+    addi $t1, -1
+
+    div.d $f2, $f2, $f6
+    j real_epsilon
+
+calculate:
+    # Calculamos se a iteração passou do limite 100
+    bgt $t1, 100, not_possible
+    addi $t1, 1
+
+    # Calculamos o valor de b (x/a) em $f6
+    div.d $f6, $f0, $f4
+
+    # Vemos se a é igual a b com uma margem de erro de epsilon
+    sub.d $f8, $f4, $f6
+    abs.d $f8, $f8
+    c.le.d $f8, $f2
+    bc1t result
+
+    # Calculamos o valor de a (a + b) / 2 em $f4
+    add.d $f4, $f4, $f6
+    div.d $f4, $f4, $f10
+
+    j calculate
+
+not_possible:
+    li $v0, 4
+    la $a0, not_possible1
+    syscall
+
+    move $a0, $t0
+    li $v0, 1
+    syscall
+
+    la $a0, not_possible2
+    li $v0, 4
+    syscall
+
+    j end
+
+result:
+    li $v0, 4
+    la $a0, result1
+    syscall
+
+    move $a0, $t0
+    li $v0, 1
+    syscall
+
+    la $a0, result2
+    li $v0, 4
+    syscall
+
+    li $v0, 3
+    mov.d $f12, $f4
+    syscall
+
+    la $a0, result3
+    li $v0, 4
+    syscall
+
+    move $a0, $t1
+    li $v0, 1
+    syscall
+
+    la $a0, result4
+    li $v0, 4
+    syscall
+
+    j end
+
+invalid_input:
+    li $v0, 4
+    la $a0, invalid_input1
+    syscall
+
+    j end
+
+end:
+    li $v0, 10
+    syscall

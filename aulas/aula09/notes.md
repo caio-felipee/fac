@@ -36,7 +36,7 @@ O overflow pode acontecer:
 ```asm
 .text
 main:
-    addu $t0, $t1, $t2
+    addu $30, $t1, $t2
     xor $t3, $t1, $t2 # verificação de sinal
     slt $t3, $t3, $zero
     bne $t3, $zero, sem-overflow # se o sinal dos operandos forem iguais e o do resultado diferente, houve overflow!
@@ -56,8 +56,8 @@ A negação de `$t2`: <br>
 ```asm
 .text
 main:
-    addu $t0, $t1, $t2
-    nor $t3, $t2, $zero # t3 = 2^32 - $t2 - 1
-    sltu $t3, $t3, $t1 # 2^32 - t2 - 1 < t1?
-    bne $t3, $zero, overflow
+    addu $t3, $t1, $t2
+    nor $t4, $t2, $zero # t3 = 2^32 - $t2 - 1
+    sltu $t4, $t4, $t1 # 2^32 - t2 - 1 < t1?
+    bne $t4, $zero, overflow
 ```
